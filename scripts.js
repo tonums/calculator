@@ -47,7 +47,6 @@ opButtons.forEach((button)=>{
     });
 });
 
-
 equalButton.addEventListener("click", function(e){
     if(getLastBtnClass()=="op-btn"){
         op.pop();
