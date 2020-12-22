@@ -12,13 +12,16 @@ let op = [];
 
 numButtons.forEach((button)=>{
     button.addEventListener("click", function(e){
-        if(getLastBtnClass().contains("equal-btn")){
-            resetCalc();
-            updateDisplay(e.target.value);
-        }else if (getLastBtnClass().contains("op-btn")){
-            updateDisplay(e.target.value);
-        }else{
-            updateDisplay(getDisplay() + e.target.value);
+        switch(getLastBtnClass()){
+            case "equal-btn":
+                resetCalc();
+                updateDisplay(e.target.value);
+                break;
+            case "op-btn":
+                updateDisplay(e.target.value);
+                break;
+            default:
+                updateDisplay(getDisplay() + e.target.value);
         }
         lastPressedButton = e.target;
     });
@@ -26,12 +29,18 @@ numButtons.forEach((button)=>{
 
 opButtons.forEach((button)=>{
     button.addEventListener("click", function(e){
-        if(getLastBtnClass().contains("op-btn")){
-            op.pop();
-            replaceEqLabel(eqLabel.textContent.slice(0,-1)+ " " + e.target.textContent);
-        }else{
-            x.push(+getDisplay());
-            addEqLabel(" "+getDisplay() + " " + e.target.textContent);
+        switch(getLastBtnClass()){
+            case "equal-btn":
+                x.push(+getDisplay());
+                replaceEqLabel(` ${getDisplay()} ${e.target.textContent}`);
+                break;
+            case "op-btn":
+                op.pop();
+                replaceEqLabel(eqLabel.textContent.slice(0,-1) + " " + e.target.textContent);
+                break;
+            default:
+                x.push(+getDisplay());
+                addEqLabel(` ${getDisplay()} ${e.target.textContent}`);
         }
         op.push(e.target.textContent);
         lastPressedButton = e.target;
@@ -40,7 +49,7 @@ opButtons.forEach((button)=>{
 
 
 equalButton.addEventListener("click", function(e){
-    if(getLastBtnClass().contains("op-btn")){
+    if(getLastBtnClass()=="op-btn"){
         op.pop();
     }
     x.push(+getDisplay());
@@ -52,7 +61,7 @@ equalButton.addEventListener("click", function(e){
 });
 
 backButton.addEventListener("click", function(e){
-    if(getLastBtnClass().contains("number-btn")){
+    if(getLastBtnClass()=="number-btn"){
         if(getDisplay().length>1){
             updateDisplay(getDisplay().substr(0,getDisplay().length-1));
         }else{
@@ -74,7 +83,15 @@ function resetCalc(){
 }
 
 function getLastBtnClass(){
-    return lastPressedButton.classList;
+    if(lastPressedButton.classList.contains("number-btn")){
+        return "number-btn";
+    }
+    if(lastPressedButton.classList.contains("equal-btn")){
+        return "equal-btn";
+    }
+    if(lastPressedButton.classList.contains("op-btn")){
+        return "op-btn";
+    }
 }
 
 function updateDisplay(newNumber){
