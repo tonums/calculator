@@ -28,13 +28,13 @@ opButtons.forEach((button)=>{
     button.addEventListener("click", function(e){
         if(getLastBtnClass().contains("op-btn")){
             op.pop();
+            replaceEqLabel(eqLabel.textContent.slice(0,-1)+ " " + e.target.textContent);
         }else{
             x.push(+getDisplay());
+            addEqLabel(" "+getDisplay() + " " + e.target.textContent);
         }
         op.push(e.target.textContent);
         lastPressedButton = e.target;
-        console.log(op);
-        console.log(x);
     });
 });
 
@@ -44,7 +44,10 @@ equalButton.addEventListener("click", function(e){
         op.pop();
     }
     x.push(+getDisplay());
-    updateDisplay(""+calculate());
+    if(op.length>0){
+        addEqLabel(" "+getDisplay() + " =");
+        updateDisplay(""+calculate());
+    }
     lastPressedButton = e.target;
 });
 
@@ -67,6 +70,7 @@ function resetCalc(){
     x=[];
     op=[];
     updateDisplay("0");
+    replaceEqLabel("");
 }
 
 function getLastBtnClass(){
@@ -80,6 +84,12 @@ function updateDisplay(newNumber){
     resultLabel.textContent=newNumber;
 }
 
+function replaceEqLabel(text){
+    eqLabel.textContent = text; 
+}
+function addEqLabel(text){
+    eqLabel.textContent +=text; 
+}
 function getDisplay() {
     return resultLabel.textContent;
 }

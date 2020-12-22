@@ -50,8 +50,8 @@ body{
     overflow: hidden;
 }
 .equaLabel{
-    position: relative;
     color: grey;
+    height: 1em;
     font-size: 0.8em;;
 }
 .buttons{
