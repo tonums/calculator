@@ -1,0 +1,96 @@
+html{
+    height: 100%;
+    font-family: sans-serif;
+    color: white;
+}
+body{
+    display: flex;
+    overflow: hidden;
+    margin:0;
+    height: 100%
+}
+.sidebar{
+    text-align: center;
+    padding: 10px;
+    width: 300px;
+    height: 100%;
+    background: #536878;
+    box-shadow: -3px 3px 15px 5px #000000;
+}
+.calc-container{
+    flex-grow: 1;
+    text-align: center;
+    padding-top: 200px;
+}
+.calc{
+    background: #536878;
+    height: 400px;
+    width: 350px;
+    margin: auto;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    transition:
+                transform 150ms ease;
+}
+.calc:hover{
+    transform: scale(1.05);
+}
+.display{
+    background: white;
+    color: black;
+    padding: 10px;
+    font-size: 1.5em;
+    border-radius: 3px;
+}
+.display label{
+    display: block;
+    width:100%;
+    text-align: right;
+    overflow: hidden;
+}
+.equaLabel{
+    position: relative;
+    color: grey;
+    font-size: 0.8em;;
+}
+.buttons{
+    margin-top: 40px;
+    display: grid;
+    height: 300px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+button{
+    display: inline-block;
+    border-radius: 1px;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    background: #536878;
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+button:hover{
+    background: #485a68;
+}
+
+button:focus {
+    outline: none;
+    outline-offset: -4px;
+}
+
+button:active {
+    transform: scale(0.99);
+}
+#zero{
+    grid-column: 1/4;
+}

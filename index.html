@@ -7,11 +7,44 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="calc">
-        <div class="display"></div>
-        <div class="buttons"></div>
+    <div class="sidebar">
+        <h1>Calculator</h1>
+        <p>Todo: <br>
+            -fix bugs<br>
+            -add a display for the calculation<br>
+            -make it look more fancy<br>
+        </p>
     </div>
-
+    <div class="calc-container">
+        <div class="calc">
+        <div class="display">
+            <label class="equaLabel"value=null></label>
+            <label class="resultLabel" value=null>0</label>
+        </div>
+        <div class="buttons">
+                    <button class="back-btn"><-</button>
+                    <button></button>
+                    <button class="reset-btn">c</button>
+                    <button class="op-btn">*</button>
+                    <button class="number-btn" value="7">7</button>
+                    <button class="number-btn" value="8">8</button>
+                    <button class="number-btn" value="9">9</button>
+                    <button class="op-btn">+</button>
+                    <button class="number-btn" value="4">4</button>
+                    <button class="number-btn" value="5">5</button>
+                    <button class="number-btn" value="6">6</button>
+                    <button class="op-btn">-</button>
+                    <button class="number-btn" value="1">1</button>
+                    <button class="number-btn" value="2">2</button>
+                    <button class="number-btn" value="3">3</button>
+                    <button class="op-btn">/</button>
+                    <button class="number-btn" id="zero" value="0">0</button>
+                    <button class="equal-btn">=</button>
+                    
+                    
+            </div> 
+        </div>
+    </div>
     <script src="scripts.js"></script>
 </body>
 </html>
