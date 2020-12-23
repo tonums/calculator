@@ -5,6 +5,7 @@ const resultLabel= document.querySelector('.resultLabel');
 const eqLabel= document.querySelector('.equaLabel');
 const resetButton= document.querySelector('.reset-btn');
 const backButton= document.querySelector('.back-btn');
+const plusMinusButton= document.querySelector('.plus-minus-btn');
 
 let lastPressedButton=equalButton;
 let x = [];
@@ -31,6 +32,7 @@ opButtons.forEach((button)=>{
     button.addEventListener("click", function(e){
         switch(getLastBtnClass()){
             case "equal-btn":
+            case "plus-minus-btn":
                 x.push(+getDisplay());
                 replaceEqLabel(` ${getDisplay()} ${e.target.textContent}`);
                 break;
@@ -51,10 +53,17 @@ equalButton.addEventListener("click", function(e){
     if(getLastBtnClass()=="op-btn"){
         op.pop();
     }
-    x.push(+getDisplay());
     if(op.length>0){
+        x.push(+getDisplay());
         addEqLabel(" "+getDisplay() + " =");
         updateDisplay(""+calculate());
+    }
+    lastPressedButton = e.target;
+});
+
+plusMinusButton.addEventListener("click", function(e){
+    if(getLastBtnClass()!="op-btn"){
+        updateDisplay(-1 * (getDisplay()));
     }
     lastPressedButton = e.target;
 });
@@ -66,7 +75,6 @@ backButton.addEventListener("click", function(e){
         }else{
             updateDisplay("0");
         }
-        
     }
 });
 
@@ -91,10 +99,13 @@ function getLastBtnClass(){
     if(lastPressedButton.classList.contains("op-btn")){
         return "op-btn";
     }
+    if(lastPressedButton.classList.contains("plus-minus-btn")){
+        return "plus-minus-btn";
+    }
 }
 
 function updateDisplay(newNumber){
-    if(newNumber.charAt(0)=="0" && newNumber.length>1){
+    if(newNumber.toString().charAt(0)=="0" && newNumber.length>1){
         newNumber = newNumber.slice(1);
     }
     resultLabel.textContent=newNumber;
@@ -108,14 +119,6 @@ function addEqLabel(text){
 }
 function getDisplay() {
     return resultLabel.textContent;
-}
-
-function getDisplayValue() {
-    return resultLabel.value;
-}
-
-function updateDisplayValue(newNumber){
-    resultLabel.value=newNumber;
 }
 
 function calculate(){
